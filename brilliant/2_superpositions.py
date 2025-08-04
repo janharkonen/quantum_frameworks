@@ -5,11 +5,7 @@ def qiskit(n : int):
 
     # Create circuit
     qc = QuantumCircuit(3, 3)
-    qc.x(1)
     qc.x(2)
-    qc.h(0)
-    qc.h(1)
-    qc.h(2)
 
     # Get the statevector and print it in a nicer format
     state = Statevector.from_instruction(qc)
@@ -19,12 +15,8 @@ def qiskit(n : int):
         print(f"|{basis_state}⟩: {amplitude:.4f}")
 
 
-    # Get the statevector
 
 
-    qc.h(0)
-    qc.h(1)
-    qc.h(2)
 
     qc.measure(0, 0)  # Specify both qubit and classical bit
     qc.measure(1, 1)  # Specify both qubit and classical bit
@@ -76,7 +68,7 @@ def pennylane(n: int):
 
 if __name__ == "__main__":
     n = 10000
-    #qiskit(n)
-    cirq(n)
+    qiskit(n)
+    #cirq(n)
     #pennylane(n)
             
