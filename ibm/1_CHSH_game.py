@@ -6,21 +6,21 @@ from qiskit_aer import AerSimulator
 from qiskit.quantum_info import Statevector
 
 
-def angle1(y):
-    return y*np.pi/4
+def angle1(x):
+    return x*np.pi/4
 
-def angle2(x):
+def angle2(y):
     base = np.pi/8
-    return base - x*base*2
+    return base - y*base*2
 
 def prob_correct(x, y):
     qc = QuantumCircuit(2, 2)
-    theta1 = angle1(y)
-    theta2 = angle2(x)
+    theta1 = angle1(x)
+    theta2 = angle2(y)
     qc.h(0)
-    qc.cx(0, 1)
-    qc.ry(-2*theta1, 0)
-    qc.ry(-2*theta2, 1)
+    qc.cx(0,1)
+    qc.ry(-2*theta2, 0)
+    qc.ry(-2*theta1, 1)
     
     state = Statevector.from_instruction(qc)
     total_prob = 0
@@ -49,7 +49,7 @@ def prob_correct(x, y):
     print(qc.draw())
     return total_prob
 
-p1 = prob_correct(0, 0)
+p1 = prob_correct(1, 0)
 p2 = prob_correct(0, 1)
 p3 = prob_correct(1, 0)
 p4 = prob_correct(1, 1)
